@@ -24,20 +24,41 @@
 		return { dimensions, measures, dimensionsMap, measuresMap };
 	};
 
-	const appendTotal = (data) => {
-		data = JSON.parse(JSON.stringify(data));
-		const superRoot = {
-			dimensions_0: { id: "total", label: "Total" },
-			measures_0: { raw: 0 }
-		};
-		data.forEach(data => {
-			if (data.dimensions_0.parentId) {
-				return;
-			}
-			data.dimensions_0.parentId = "total";
-			superRoot.measures_0.raw += data.measures_0.raw;
+	const push = (data, { source, target, value }) => {
+		const found = data.find(record => record.source === source && record.target === target);
+		if (found) {
+			found.value = found.value + value;
+		} else {
+			data.push({ source, target, value });
+		}
+	};
+
+	const getNodesAndLinks = (data, dimensions) => {
+		const records = JSON.parse(JSON.stringify(data));
+		const nodes = new Set(["Total"]);
+		const links = [];
+
+		records.forEach(record => {
+			dimensions.forEach((_, index) => {
+				const target = record[`dimensions_${index}`].label;
+				const parent = record[`dimensions_${index + 1}`];
+				const source = parent ? parent.label : "Total";
+				nodes.add(target);
+
+				push(links, {
+					source,
+					target,
+					value: record.measures_0.raw
+				});
+			});
 		});
-		return [superRoot].concat(data);
+
+		return {
+			nodes: [...nodes].map(node => {
+				return { name: node };
+			}),
+			links
+		};
 	};
 
 	class Renderer {
@@ -55,35 +76,9 @@
 			}
 
 			const { data, metadata } = dataBinding;
-			const { dimensions, measures } = parseMetadata(metadata);
+			const { dimensions } = parseMetadata(metadata);
+			const { nodes, links } = getNodesAndLinks(data, dimensions);
 
-			const [dimension] = dimensions;
-			const [measure] = measures;
-			const nodes = [];
-			const links = [];
-
-			console.log(data);
-			console.log(dimensions);
-			console.log(measures);
-			const records = appendTotal(data);
-			records.forEach(d => {
-				const { label, parentId } = d[dimension.key];
-				const { raw } = d[measure.key];
-				nodes.push({ name: label });
-
-				const dParent = records.find(d => {
-					const { id } = d[dimension.key];
-					return id === parentId;
-				});
-				if (dParent) {
-					const { label: labelParent } = dParent[dimension.key];
-					links.push({
-						source: labelParent,
-						target: label,
-						value: raw
-					});
-				}
-			});
 			// eslint-disable-next-line no-undef
 			this._echart = echarts.init(this._root);
 			// https://echarts.apache.org/examples/en/editor.html?c=sankey-levels
