@@ -40,7 +40,12 @@
 
 		records.forEach(record => {
 			dimensions.forEach((_, index) => {
-				const target = record[`dimensions_${index}`].label;
+				const child = record[`dimensions_${index}`];
+				if (!child) {
+					return;
+				}
+
+				const target = child.label;
 				const parent = record[`dimensions_${index + 1}`];
 				const source = parent ? parent.label : "Total";
 				nodes.add(target);
@@ -223,5 +228,5 @@
 	}
 
 	// eslint-disable-next-line no-undef
-	customElements.define("rizing-sankey-chart", Main);
+	customElements.define("com-sap-sac-sample-echarts-sankey", Main);
 })();
