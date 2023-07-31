@@ -35,7 +35,7 @@
 
 	const getNodesAndLinks = (data, dimensions) => {
 		const records = JSON.parse(JSON.stringify(data));
-		const nodes = new Set(["Total"]);
+		const nodes = dimensions.length === 1 ? new Set(["Total"]) : new Set();
 		const links = [];
 
 		records.forEach(record => {
