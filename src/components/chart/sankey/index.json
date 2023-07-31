@@ -1,17 +1,17 @@
 {
 	"eula": "",
-	"vendor": "SAP",
+	"vendor": "RIZING",
 	"license": "",
-	"id": "com.sap.sac.sample.echarts.sankey",
+	"id": "com.rizing.sac.widgets.sankey",
 	"version": "1.0.0",
 	"supportsMobile": true,
-	"name": "EChartsSankey",
-	"newInstancePrefix": "EChartsSankey",
-	"description": "A sample custom widget project",
+	"name": "Sankey Chart",
+	"newInstancePrefix": "SankeyChart",
+	"description": "Sankey Chart Widget",
 	"webcomponents": [
 		{
 			"kind": "main",
-			"tag": "com-sap-sac-sample-echarts-sankey",
+			"tag": "rizing-sankey-chart",
 			"url": "https://raw.githubusercontent.com/jcailan/sac-custom-widget/master/src/components/chart/sankey/main.js",
 			"integrity": "",
 			"ignoreIntegrity": true

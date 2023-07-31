@@ -228,5 +228,5 @@
 	}
 
 	// eslint-disable-next-line no-undef
-	customElements.define("com-sap-sac-sample-echarts-sankey", Main);
+	customElements.define("rizing-sankey-chart", Main);
 })();
