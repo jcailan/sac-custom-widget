@@ -1,5 +1,5 @@
 import "./components/BaseComponent";
-import "./components/SankeyChart";
+import "./components/chart/sankey/main";
 
 import BaseComponent from "./components/BaseComponent";
 import { twoDimensions as data } from "./data/products";
