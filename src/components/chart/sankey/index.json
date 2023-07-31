@@ -12,7 +12,7 @@
 		{
 			"kind": "main",
 			"tag": "rizing-sankey-chart",
-			"url": "https://raw.githubusercontent.com/jcailan/sac-custom-widget/master/src/components/chart/sankey/main.js",
+			"url": "/main.js",
 			"integrity": "",
 			"ignoreIntegrity": true
 		}
