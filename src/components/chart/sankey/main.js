@@ -33,9 +33,10 @@
 		}
 	};
 
-	const getNodesAndLinks = (data, dimensions) => {
+	const getNodesAndLinks = (data, dimensions, properties) => {
+		const { isTotalIncluded } = properties;
 		const records = JSON.parse(JSON.stringify(data));
-		const nodes = dimensions.length === 1 ? new Set(["Total"]) : new Set();
+		const nodes = isTotalIncluded || dimensions.length === 1 ? new Set(["Total"]) : new Set();
 		const links = [];
 
 		records.forEach(record => {
@@ -72,7 +73,7 @@
 			this._echart = null;
 		}
 
-		async render(dataBinding) {
+		async render(dataBinding, properties) {
 			await getScriptPromisify(echartCdn);
 			this.dispose();
 
@@ -82,15 +83,13 @@
 
 			const { data, metadata } = dataBinding;
 			const { dimensions } = parseMetadata(metadata);
-			const { nodes, links } = getNodesAndLinks(data, dimensions);
+			const { nodes, links } = getNodesAndLinks(data, dimensions, properties);
 
 			// eslint-disable-next-line no-undef
 			this._echart = echarts.init(this._root);
 			// https://echarts.apache.org/examples/en/editor.html?c=sankey-levels
 			// https://echarts.apache.org/en/option.html
 
-			console.log(nodes);
-			console.log(links);
 			this._echart.setOption({
 				title: {
 					text: ""
@@ -111,46 +110,43 @@
 							{
 								depth: 0,
 								itemStyle: {
-									color: "#488ccc"
+									xcolor: "#0092D1"
 								},
 								lineStyle: {
-									color: "source",
-									opacity: 0.6
+									opacity: 0.5
 								}
 							},
 							{
 								depth: 1,
 								itemStyle: {
-									color: "#488ccc"
+									xcolor: "#E6600D"
 								},
 								lineStyle: {
-									color: "source",
 									opacity: 0.4
 								}
 							},
 							{
 								depth: 2,
 								itemStyle: {
-									color: "#488ccc"
+									xcolor: "#1A9898"
 								},
 								lineStyle: {
-									color: "source",
-									opacity: 0.2
+									opacity: 0.3
 								}
 							},
 							{
 								depth: 3,
 								itemStyle: {
-									color: "#488ccc"
+									color: "#E09D00"
 								},
 								lineStyle: {
-									color: "source",
-									opacity: 0.1
+									opacity: 0.2
 								}
 							}
 						],
 						lineStyle: {
-							curveness: 0.7
+							color: 'gradient',
+							curveness: 0.5
 						}
 					}
 				]
@@ -168,16 +164,16 @@
 	// eslint-disable-next-line no-undef
 	const template = document.createElement("template");
 	template.innerHTML = `
-  <style>
-      #chart {
-          width: 100%;
-          height: 100%;
-      }
-  </style>
-  <div id="root" style="width: 100%; height: 100%;">
-      <div id="chart"></div>
-  </div>
-  `;
+	<style>
+		#chart {
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+	<div id="root" style="width: 100%; height: 100%;">
+		<div id="chart"></div>
+	</div>
+	`;
 
 	// eslint-disable-next-line no-undef
 	class Main extends HTMLElement {
@@ -196,8 +192,8 @@
 		async onCustomWidgetBeforeUpdate() {
 		}
 
-		onCustomWidgetAfterUpdate() {
-			this.render();
+		onCustomWidgetAfterUpdate(properties) {
+			this.render(properties);
 		}
 
 		onCustomWidgetResize() {
@@ -211,7 +207,7 @@
 		// ------------------
 		//
 		// ------------------
-		render() {
+		render(properties) {
 			// eslint-disable-next-line no-undef
 			if (!document.contains(this)) {
 				// Delay the render to assure the custom widget is appended on dom
@@ -219,7 +215,7 @@
 				return;
 			}
 
-			this._renderer.render(this.dataBinding);
+			this._renderer.render(this.dataBinding, properties);
 		}
 
 		dispose() {

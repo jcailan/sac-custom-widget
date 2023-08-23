@@ -16,7 +16,23 @@
 
 <body>
 	<div id="content">
-		<rizing-sankey-chart id="sankey" />
+		<!-- <ui5-dynamic-side-content> -->
+		<div id="left">
+			<rizing-sankey-chart id="main" />
+		</div>
+		<div id="right" slot="sideContent">
+			<rizing-sankey-chart-styling id="styling" />
+		</div>
+		<!-- </ui5-dynamic-side-content> -->
+		<!-- <ui5-checkbox id="isTotalIncluded" text="Include Total"
+			class="ui5-content-density-compact"></ui5-checkbox>
+		<br />
+		<ui5-color-palette>
+			<ui5-color-palette-item value="darkblue"
+				class="ui5-content-density-compact"></ui5-color-palette-item>
+		</ui5-color-palette>
+		<br />
+		<ui5-button id="apply" class="ui5-content-density-compact">Apply</ui5-button> -->
 	</div>
 </body>
 

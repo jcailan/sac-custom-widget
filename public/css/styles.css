@@ -7,5 +7,16 @@ body {
     position: absolute;
     top: 0;
     bottom: 0;
+    height: 100%;
     width: 100%;
+}
+
+#left {
+    height: 100%;
+    width: 100%;
+}
+
+#right {
+    display: flex;
+    flex-direction: column;
 }

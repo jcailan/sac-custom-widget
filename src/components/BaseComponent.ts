@@ -16,7 +16,7 @@ export default class CustomWidget extends HTMLElement {
 
 	};
 
-	onCustomWidgetAfterUpdate(): void {
+	onCustomWidgetAfterUpdate(properties: object): void {
 
 	};
 
