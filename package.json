@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"dev": "webpack serve --mode=development --open",
-		"build": "webpack"
+		"build": "webpack --config ./webpack.deploy.js"
 	},
 	"author": "Jhodel Cailan",
 	"license": "ISC",

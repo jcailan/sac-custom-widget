@@ -1,13 +1,16 @@
 const path = require('path');
 
 module.exports = {
-	devtool: 'inline-source-map',
+	mode: 'production',
 	resolve: {
 		extensions: ['.ts', '.js']
 	},
-	entry: './src/index.ts',
+	entry: {
+		main: './src/components/chart/sankey/main.js',
+		styling: './src/components/chart/sankey/styling.js'
+	},
 	output: {
-		filename: 'bundle.js',
+		filename: '[name].js',
 		path: path.resolve(__dirname, 'dist')
 	},
 	module: {
@@ -38,9 +41,5 @@ module.exports = {
 				],
 			}
 		]
-	},
-	devServer: {
-		contentBase: path.join(__dirname, 'public/'),
-		publicPath: '/dist/'
 	}
 };
