@@ -12,7 +12,14 @@
 		{
 			"kind": "main",
 			"tag": "rizing-sankey-chart",
-			"url": "/main.js",
+			"url": "https://sac-widgets-dev.cfapps.us10.hana.ondemand.com/chart/sankey/main.js",
+			"integrity": "",
+			"ignoreIntegrity": true
+		},
+		{
+			"kind": "styling",
+			"tag": "rizing-sankey-chart-styling",
+			"url": "https://sac-widgets-dev.cfapps.us10.hana.ondemand.com/chart/sankey/styling.js",
 			"integrity": "",
 			"ignoreIntegrity": true
 		}
@@ -25,6 +32,10 @@
 		"height": {
 			"type": "integer",
 			"default": 320
+		},
+		"isTotalIncluded": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"events": {},

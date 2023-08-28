@@ -1,0 +1,29 @@
+---
+_schema-version: "3.1"
+ID: com.rizing.sac.widgets
+version: 1.0.0
+description: "SAP Analytics Cloud: Custom Widgets"
+parameters:
+  enable-parallel-deployments: true
+
+modules:
+  - name: sac-app-router
+    type: nodejs
+    path: router
+    parameters:
+      host: sac-widgets-${space}
+      memory: 128M
+      disk-quota: 256M
+    build-parameters:
+      requires:
+        - name: sankey-chart
+
+  - name: sankey-chart
+    type: html5
+    path: sankey-chart
+    build-parameters:
+      builder: custom
+      commands:
+        - npm install
+        - npm run build
+      supported-platforms: []

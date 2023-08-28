@@ -9,14 +9,21 @@
 	<title>Web Components Sample App</title>
 
 	<link rel="stylesheet" href="css/styles.css">
-	<script src="https://code.jquery.com/jquery-3.7.0.min.js"
-		integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 	<script type="module" src="./dist/bundle.js"></script>
 </head>
 
 <body>
 	<div id="content">
-		<rizing-sankey-chart id="sankey" />
+		<ui5-dynamic-side-content>
+			<div id="left">
+				<ui5-title>Custom Widget</ui5-title>
+				<rizing-sankey-chart id="main" />
+			</div>
+			<div id="right" slot="sideContent">
+				<ui5-title>Custom Styling</ui5-title>
+				<rizing-sankey-chart-styling id="styling" class="ui5-content-density-compact" />
+			</div>
+		</ui5-dynamic-side-content>
 	</div>
 </body>
 

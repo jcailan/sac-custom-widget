@@ -1,8 +1,18 @@
 const path = require('path');
 
 module.exports = {
-	entry: './src/index.ts',
-	devtool: 'inline-source-map',
+	mode: 'production',
+	resolve: {
+		extensions: ['.ts', '.js']
+	},
+	entry: {
+		main: './src/widget/main.js',
+		styling: './src/widget/styling.js'
+	},
+	output: {
+		filename: '[name].js',
+		path: path.resolve(__dirname, '../router/resources/chart/sankey')
+	},
 	module: {
 		rules: [
 			{
@@ -31,17 +41,5 @@ module.exports = {
 				],
 			}
 		]
-	},
-	resolve: {
-		extensions: ['.ts', '.js']
-	},
-	output: {
-		filename: 'bundle.js',
-		path: path.resolve(__dirname, 'dist')
-	},
-	devServer: {
-		contentBase: path.join(__dirname, 'public/'),
-		publicPath: '/dist/',
-		port: 9000
 	}
 };
