@@ -5,3 +5,4 @@ package-lock.json
 dist/
 resources/
 mta_archives/
+*.mta

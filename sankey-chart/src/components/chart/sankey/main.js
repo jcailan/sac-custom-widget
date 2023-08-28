@@ -192,8 +192,8 @@
 		async onCustomWidgetBeforeUpdate() {
 		}
 
-		onCustomWidgetAfterUpdate(properties) {
-			this.render(properties);
+		onCustomWidgetAfterUpdate() {
+			this.render();
 		}
 
 		onCustomWidgetResize() {
@@ -207,7 +207,7 @@
 		// ------------------
 		//
 		// ------------------
-		render(properties) {
+		render() {
 			// eslint-disable-next-line no-undef
 			if (!document.contains(this)) {
 				// Delay the render to assure the custom widget is appended on dom
@@ -215,7 +215,7 @@
 				return;
 			}
 
-			this._renderer.render(this.dataBinding, properties);
+			this._renderer.render(this.dataBinding, this);
 		}
 
 		dispose() {

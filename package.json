@@ -1,0 +1,16 @@
+{
+	"name": "sac-custom-widget",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"build": "rimraf router/resources mta_archives && mbt build --mtar archive",
+		"deploy": "npm run build && cf deploy mta_archives/archive.mtar --retries 1 -f",
+		"undeploy": "cf undeploy com.rizing.sac.widgets --delete-services --delete-service-keys --delete-service-brokers"
+	},
+	"author": "Jhodel Cailan",
+	"license": "ISC",
+	"devDependencies": {
+		"rimraf": "^5.0.1"
+	}
+}
