@@ -53,10 +53,6 @@ class Styling extends HTMLElement {
 		this.dispose();
 	}
 
-	// ------------------
-	//
-	// ------------------
-
 	dispose() {
 	}
 }

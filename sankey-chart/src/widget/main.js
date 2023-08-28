@@ -187,9 +187,6 @@ class Main extends HTMLElement {
 		this.dispose();
 	}
 
-	// ------------------
-	//
-	// ------------------
 	render() {
 		if (!document.contains(this)) {
 			// Delay the render to assure the custom widget is appended on dom
