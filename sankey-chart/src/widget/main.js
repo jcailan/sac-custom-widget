@@ -75,11 +75,7 @@ class Renderer {
 		const { dimensions } = parseMetadata(metadata);
 		const { nodes, links } = getNodesAndLinks(data, dimensions, properties);
 
-		// eslint-disable-next-line no-undef
 		this._echarts = echarts.init(this._root);
-		// https://echarts.apache.org/examples/en/editor.html?c=sankey-levels
-		// https://echarts.apache.org/en/option.html
-
 		this._echarts.setOption({
 			title: {
 				text: ""
@@ -145,13 +141,11 @@ class Renderer {
 
 	dispose() {
 		if (this._echarts) {
-			// eslint-disable-next-line no-undef
 			echarts.dispose(this._echarts);
 		}
 	}
 }
 
-// eslint-disable-next-line no-undef
 const template = document.createElement("template");
 template.innerHTML = `
 	<style>
@@ -163,9 +157,8 @@ template.innerHTML = `
 	<div id="root" style="width: 100%; height: 100%;">
 		<div id="chart"></div>
 	</div>
-	`;
+`;
 
-// eslint-disable-next-line no-undef
 class Main extends HTMLElement {
 	constructor() {
 		super();
@@ -198,7 +191,6 @@ class Main extends HTMLElement {
 	//
 	// ------------------
 	render() {
-		// eslint-disable-next-line no-undef
 		if (!document.contains(this)) {
 			// Delay the render to assure the custom widget is appended on dom
 			setTimeout(this.render.bind(this), 0);
@@ -213,5 +205,4 @@ class Main extends HTMLElement {
 	}
 }
 
-// eslint-disable-next-line no-undef
 customElements.define("rizing-sankey-chart", Main);
