@@ -1,11 +1,11 @@
 import "@ui5/webcomponents/dist/Title";
 import "@ui5/webcomponents-fiori/dist/DynamicSideContent";
 
-import "./components/BaseComponent";
-import "./components/chart/sankey/main";
-import "./components/chart/sankey/styling";
+import "./BaseComponent";
+import "./widget/main";
+import "./widget/styling";
 
-import BaseComponent from "./components/BaseComponent";
+import BaseComponent from "./BaseComponent";
 import { twoDimensions as data } from "./data/products";
 
 window.addEventListener("load", () => {
