@@ -7,15 +7,11 @@ import "@ui5/webcomponents/dist/CheckBox";
 import "@ui5/webcomponents/dist/Button";
 import "@ui5/webcomponents/dist/ColorPalette.js";
 
+const css = require("./styling.css").toString();
 const template = document.createElement('template');
 template.innerHTML = `
 	<div id="root">
 		<ui5-checkbox id="isTotalIncluded" text="Include Total"></ui5-checkbox>
-		<br />
-		<ui5-color-palette>
-			<ui5-color-palette-item value="darkblue"></ui5-color-palette-item>
-		</ui5-color-palette>
-		<br />
 		<ui5-button id="apply">Apply</ui5-button>
 	</div>
 `;
@@ -25,6 +21,9 @@ class Styling extends HTMLElement {
 		super();
 
 		this._shadowRoot = this.attachShadow({ mode: 'open' });
+		const style = document.createElement("style");
+		style.textContent = css;
+		this._shadowRoot.append(style);
 		this._shadowRoot.appendChild(template.content.cloneNode(true));
 		this._root = this._shadowRoot.getElementById('root');
 
