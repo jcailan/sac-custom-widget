@@ -6,8 +6,8 @@ module.exports = {
 		extensions: ['.ts', '.js']
 	},
 	entry: {
-		main: './src/components/chart/sankey/main.js',
-		styling: './src/components/chart/sankey/styling.js'
+		main: './src/widget/main.js',
+		styling: './src/widget/styling.js'
 	},
 	output: {
 		filename: '[name].js',
