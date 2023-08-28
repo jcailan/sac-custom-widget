@@ -1,3 +1,4 @@
+import "@ui5/webcomponents/dist/Title";
 import "@ui5/webcomponents-fiori/dist/DynamicSideContent";
 
 import "./components/BaseComponent";
